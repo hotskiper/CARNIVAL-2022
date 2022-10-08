@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>烽火漂流瓶</title>
+	<link rel="stylesheet" href="css/c.css">
+    <!-- 这里更换图标 -->
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+	<meta name="viewport" content="initial-scale=1, minimum-scale=1, maximum-scale=1">
+</head>
+<body>
+	<div class="island"></div>
+	<div class="beach"></div>
+	<div id="salvageAnim" class="salvage-anim hide">
+		<img src="img/salvage-anim.png" />
+	</div>
+	<div id="page" class="container">
+		<div id="header">
+			<h1 id="logo">缘分瓶</h1>
+			<div class="login hide" id="btnLogin">
+				<span class="btn">登录</span>
+				<img src="res/100.jpg" class="uAvatar" />
+			</div>
+		</div>
+		<div id="result" class="s hide">
+			<span class="btnClose"></span>
+			<span class="t_b">捞到一个瓶子<a href="javascript:;" id="btnOpen">打开看看</a></span>
+			<span class="t_s">捞到一个海星<a href="javascript:;" id="btnTry">继续试试</a></span>
+		</div>
+		<div id="toolBar">
+			<div class="tollBar-wrap">
+				<a href="javascript:;" id="btnThrow" class="btnThrow">写一个</a>
+				<a href="javascript:;" id="btnGet" class="btnGet">捞一个</a>
+				<a href="javascript:;" id="btnBottle" class="btnBottle">我的瓶子</a>
+			</div>
+		</div>
+
+		<div id="myBottle" class="  panel hide">
+			<h4 class="title">我的瓶子</h4>
+			<span title="关闭" class="btnClose"></span>
+			<div class="bottleInfo">
+				<table id="bottleList">
+					<!-- 这里通过jQuery添加表格数据 -->
+				</table>
+			</div>
+
+		</div>
+
+
+		<div id="loginPanel" class="loginPanel panel hide">
+			<h4 class="title">登录</h4>
+			<span title="关闭" class="btnClose"></span>
+			<div class="content">
+				<div class="inner">
+					<div class="loginArea inputArea">
+						<p>请安装<a target="black"href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a>后再使用缘分瓶</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="writeBottle" class="  panel hide">
+			<h4 class="title">丢瓶子</h4>
+			<span title="关闭" class="btnClose"></span>
+			<div class="content">
+				<div class="inner">
+					<textarea id="bottleMsg"></textarea>
+					<span class="notice">瓶子不能为空</span>
+					<button id="btnSubBottleMsg">丢到海里</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<!-- <script src="js/nebPay.js" type="text/javascript" charset="utf-8"></script> -->
+<script src="js/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/zepto.js"></script>
+<!-- <script src="js/underscore.js"></script> -->
+<script src="js/common.js"></script>
+<script src="js/layer/layer.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/html" id="tpl_msg">
+	<li class="<%= type%> clearfix">
+		<div class="avatar"><img src="<%=avatar%>"></div>
+		<p class="time"><%=Util.format(time)%></p>
+		<div class="msg">
+			<p><%=msg%></p>
+		</div>
+	</li>
+</script>
+

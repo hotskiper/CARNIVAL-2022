@@ -1,0 +1,32 @@
+{
+    "code":"0",
+    "msg":"ok",
+    "data": [
+        {
+            "type": "线上游戏",
+            "data": [
+                { "game": "前世今生", "score": 10 },
+                { "game": "写给心中的TA", "score": 10 },
+                { "game": "烽火传军情", "score": 10 },
+                { "game": "记忆翻翻乐", "score": 10 },
+                { "game": "戎马竞技", "score": 10 },
+                { "game": "自走棋", "score": 10 },
+                { "game": "拔河", "score": 10 }
+            ]
+        }, {
+            "type": "线下游戏",
+            "data": [
+                { "game": "书法画扇", "score": 10 },
+                { "game": "印染体验", "score": 10 },
+                { "game": "汉服拍照", "score": 10 },
+                { "game": "套圈", "score": 10 },
+                { "game": "跳白索", "score": 10 },
+                { "game": "投壶", "score": 10 },
+                { "game": "抛绣球", "score": 10 },
+                { "game": "漂流小球", "score": 10 }
+            ]
+        }
+    ],
+    "total": 100
+}
+  

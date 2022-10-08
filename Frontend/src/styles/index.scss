@@ -1,0 +1,139 @@
+@import './variables.scss';
+
+body {
+    height: 100%;
+    background-color: $white-1;
+    .cube-slide-dots{
+        top: 10px;
+        transform: scale(2);
+        transform-origin: 50% 0%;
+    }
+    .cube-slide-item > a > img {
+      display: block;
+      height: 100%;
+      width: 100%;
+    }
+    .loading-dialog{
+      position: fixed;
+      height: 100vh;
+      width: 100vw;
+      background-color: rgba(0,0,0,0.7);
+      top: 0;
+      left: 0;
+      z-index: 99999;
+      .cube-loading{
+        position: absolute;
+        top:50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        color: white;
+      }
+    }
+    .none-style{
+      font-size: $font-size-bigger;
+      color:$brown-6;
+      text-align: center;
+      line-height: 40px;
+      position: absolute;
+      top:40%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+
+
+    @keyframes lightMove
+    {
+      0% {
+        transform: rotate(0deg)
+      }
+      60% {
+        transform: rotate(0deg)
+      }
+      70% {
+        transform: rotate(20deg)
+      }
+      85% {
+        transform: rotate(20deg)
+      }
+      92% {
+        transform: rotate(0deg)
+      }
+      94% {
+        transform: rotate(-2deg)
+      }
+      96% {
+        transform: rotate(0deg)
+      }
+      98% {
+        transform: rotate(1deg)
+      }
+      100% {
+        transform: rotate(0deg)
+      }
+    }
+  
+    @keyframes lightMoveIn
+      {
+        0% {
+          transform: rotate(0deg)
+        }
+        60% {
+          transform: rotate(0deg)
+        }
+        70% {
+          transform: rotate(10deg)
+        }
+        73% {
+          transform: rotate(12.5deg)
+        }
+        75% {
+          transform: rotate(7.5deg)
+        }
+        80% {
+          transform: rotate(12.5deg)
+        }
+        85% {
+          transform: rotate(12.5deg)
+        }
+  
+        92% {
+        transform: rotate(0deg)
+        }
+        94% {
+          transform: rotate(-1deg)
+        }
+        96% {
+          transform: rotate(0deg)
+        }
+        98% {
+          transform: rotate(0.5deg)
+        }
+        100% {
+          transform: rotate(0deg)
+        }
+      }
+
+      //二维码
+      #qrcode{
+        width: 56vw;
+        height: 56vw;
+        position: absolute;
+        border-radius: 6px;
+        top: 192px;
+        left: 50%;
+        transform: translate(-50%);
+        img{
+          width: 56vw;
+          height: 56vw;
+          display: inline-block;
+        }
+      }
+   
+    
+
+}
+
+
+
+
+

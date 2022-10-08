@@ -1,0 +1,47 @@
+{
+    "code":"0",
+    "msg":"ok",
+    "data": [
+       {
+        "id": "X5500",
+        "exchangeCount": "3",
+        "costInt": "39",
+        "address": "南京",
+        "exchangeTime": "2019-10-27"
+       },{
+        "id": "X5501",
+        "exchangeCount": "3",
+        "costInt": "39",
+        "address": "上海研发中心",
+        "exchangeTime": "2019-10-27"
+       },
+       {
+        "id": "X5502",
+        "exchangeCount": "3",
+        "costInt": "39",
+        "address": "北京研发中心",
+        "exchangeTime": "2019-10-27"
+       },{
+        "id": "X5503",
+        "exchangeCount": "3",
+        "costInt": "39",
+        "address": "大连",
+        "exchangeTime": "2019-10-27"
+       },
+       {
+        "id": "X5500",
+        "exchangeCount": "3",
+        "costInt": "39",
+        "address": "南京",
+        "exchangeTime": "2019-10-27"
+       },{
+        "id": "X5500",
+        "exchangeCount": "3",
+        "costInt": "39",
+        "address": "南京",
+        "exchangeTime": "2019-10-27"
+       }
+    ],
+    "total": 100
+}
+  

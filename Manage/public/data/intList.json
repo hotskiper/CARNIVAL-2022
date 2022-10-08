@@ -1,0 +1,59 @@
+{
+    "code":"0",
+    "msg":"ok",
+    "data": [
+       {
+        "id": "X5500",
+        "onlineIntCount": "67",
+        "offlineIntCount": "65",
+        "isExchange": 0,
+        "costInt": "39",
+        "leftInt": "26",
+        "exchangeTime": "2019-10-27"
+       },{
+        "id": "X3456",
+        "onlineIntCount": "67",
+        "offlineIntCount": "65",
+        "isExchange": 1,
+        "costInt": "39",
+        "leftInt": "26",
+        "exchangeTime": "2019-10-27"
+       },
+       {
+        "id": "X7890",
+        "onlineIntCount": "67",
+        "offlineIntCount": "65",
+        "isExchange": 0,
+        "costInt": "39",
+        "leftInt": "26",
+        "exchangeTime": "2019-10-27"
+       },{
+        "id": "X4578",
+        "onlineIntCount": "67",
+        "offlineIntCount": "65",
+        "isExchange": 1,
+        "costInt": "39",
+        "leftInt": "26",
+        "exchangeTime": "2019-10-27"
+       },
+       {
+        "id": "X3709",
+        "onlineIntCount": "67",
+        "offlineIntCount": "65",
+        "isExchange": 0,
+        "costInt": "39",
+        "leftInt": "26",
+        "exchangeTime": "2019-10-27"
+       },{
+        "id": "X5702",
+        "onlineIntCount": "67",
+        "offlineIntCount": "65",
+        "isExchange": 0,
+        "costInt": "39",
+        "leftInt": "26",
+        "exchangeTime": "2019-10-27"
+       }
+    ],
+    "total": 100
+}
+  
