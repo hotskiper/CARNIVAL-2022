@@ -637,23 +637,31 @@ export default {
     goPageUrl (url) {
       window.location.href = url
     },
-    setTimer: function () {
+    getGameList: function () {
+      const games = [
+        { type: 1, name: '1', playerNumber: 1 },
+        { type: 2, name: '2', playerNumber: 2 },
+        { type: 3, name: '3', playerNumber: 3 },
+        { type: 4, name: '4', playerNumber: 4 }
+      ]
       var _self = this
-      this.timer = setInterval(() => {
-        service.getGameList().then(function (res) {
-          if (res.data.status !== 200) {
-            alert('error:' + res.data.message + '-' + res.data.data.msg)
+      games.forEach(function (item) {
+        _self.underLineGameList.forEach(function (itemIn) {
+          if (itemIn.name === item.name) {
+            itemIn.number = item.playerNumber
           }
-          res.data.data.forEach(function (item) {
-            _self.underLineGameList.forEach(function (itemIn) {
-              if (itemIn.name === item.name) {
-                itemIn.number = item.playerNumber
-              }
-            })
-          })
         })
-        this.updateState()
-      }, 5000)
+      })
+
+      // this.timer = setInterval(() => {
+      //   service.getGameList().then(function (res) {
+      //     if (res.data.status !== 200) {
+      //       alert('error:' + res.data.message + '-' + res.data.data.msg)
+      //     }
+      //     res.data.data
+      //   })
+      //   this.updateState()
+      // }, 5000)
     },
     updateState () {
       var _self = this
@@ -672,19 +680,20 @@ export default {
     if (localStorage.token) {
       _self.isLoading = false
       clearInterval(this.timer)
-      this.setTimer()
+      this.getGameList()
     } else {
       const userId = this.$store.state.userId
       const params = {
         username: userId,
         password: `${userId}1024`
       }
+      // debugger
       service.login(params).then((res) => {
         _self.isLoading = false
         if (res.data.status_code === 200) {
           localStorage.token = res.data.access_token
           clearInterval(this.timer)
-          this.setTimer()
+          this.getGameList()
         } else {
           console.log(res.data.msg)
         }

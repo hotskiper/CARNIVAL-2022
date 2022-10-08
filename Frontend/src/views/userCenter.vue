@@ -201,6 +201,7 @@ export default {
     }
 
     service.getUserFragment({}).then(function (res) {
+      _self.isLoading = false
       if (res.data.status_code !== 200) {
         alert('error:' + res.data.message + '-' + res.data.data.msg)
       }
@@ -266,26 +267,26 @@ export default {
       'changeHasNotRead',
       false
     )
-    service.getMessageList({
-      'recipientName': _self.$store.getters.getName
-    }).then(function (res) {
-      messageList = res.data.data
-      service.getMessageList({
-        'recipientName': _self.$store.getters.getCardNumber
-      }).then(function (res) {
-        messageList = messageList.concat(res.data.data)
-        messageList.forEach(element => {
-          if (element.state === 1) {
-            _self.hasNotRead = true
-            _self.$store.commit(
-              'changeHasNotRead',
-              true
-            )
-          }
-        })
-        _self.isLoading = false
-      })
-    })
+    // service.getMessageList({
+    //   'recipientName': _self.$store.getters.getName
+    // }).then(function (res) {
+    //   messageList = res.data.data
+    //   service.getMessageList({
+    //     'recipientName': _self.$store.getters.getCardNumber
+    //   }).then(function (res) {
+    //     messageList = messageList.concat(res.data.data)
+    //     messageList.forEach(element => {
+    //       if (element.state === 1) {
+    //         _self.hasNotRead = true
+    //         _self.$store.commit(
+    //           'changeHasNotRead',
+    //           true
+    //         )
+    //       }
+    //     })
+    //     _self.isLoading = false
+    //   })
+    // })
   }
 }
 </script>

@@ -52,28 +52,28 @@ export default {
         'changeHasNotRead',
         false
       )
-      service.getMessageList({
-        'recipientName': _self.$store.getters.getName
-      }).then(function (res) {
-        if (res.data.status !== 200) {
-          alert('error:' + res.data.message + '-' + res.data.data.msg)
-        }
-        messageList = res.data.data
-        service.getMessageList({
-          'recipientName': _self.$store.getters.getCardNumber
-        }).then(function (res) {
-          messageList = messageList.concat(res.data.data)
-          messageList.forEach(element => {
-            if (element.state === 1) {
-              _self.$store.commit(
-                'changeHasNotRead',
-                true
-              )
-            }
-          })
-        })
-      })
-      console.log('hasNotRead:' + _self.$store.getters.getHasNotRead)
+      // service.getMessageList({
+      //   'recipientName': _self.$store.getters.getName
+      // }).then(function (res) {
+      //   if (res.data.status !== 200) {
+      //     alert('error:' + res.data.message + '-' + res.data.data.msg)
+      //   }
+      //   messageList = res.data.data
+      //   service.getMessageList({
+      //     'recipientName': _self.$store.getters.getCardNumber
+      //   }).then(function (res) {
+      //     messageList = messageList.concat(res.data.data)
+      //     messageList.forEach(element => {
+      //       if (element.state === 1) {
+      //         _self.$store.commit(
+      //           'changeHasNotRead',
+      //           true
+      //         )
+      //       }
+      //     })
+      //   })
+      // })
+      // console.log('hasNotRead:' + _self.$store.getters.getHasNotRead)
 
       this.$store.commit('changeTabActiveIndex', index)
 

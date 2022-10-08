@@ -467,41 +467,41 @@ export default {
 
     _self.messageList = []
     _self.messageListSystem = []
-    service.getMessageList({
-      'recipientName': _self.$store.getters.getName
-    }).then(function (res) {
-      _self.messageList = res.data.data
-      service.getMessageList({
-        'recipientName': _self.$store.getters.getCardNumber
-      }).then(function (res) {
-        if (res.data.status !== 200) {
-          alert('error:' + res.data.message + '-' + res.data.data.msg)
-        }
-        _self.messageList = _self.messageList.concat(res.data.data)
-        _self.messageList.reverse()
-        _self.messageList.forEach(element => {
-          element.img = '/headImg/' + Math.floor(6 * Math.random()) + '.png'
-        })
-        _self.isLoading = false
-      })
-    })
+    // service.getMessageList({
+    //   'recipientName': _self.$store.getters.getName
+    // }).then(function (res) {
+    //   _self.messageList = res.data.data
+    //   service.getMessageList({
+    //     'recipientName': _self.$store.getters.getCardNumber
+    //   }).then(function (res) {
+    //     if (res.data.status !== 200) {
+    //       alert('error:' + res.data.message + '-' + res.data.data.msg)
+    //     }
+    //     _self.messageList = _self.messageList.concat(res.data.data)
+    //     _self.messageList.reverse()
+    //     _self.messageList.forEach(element => {
+    //       element.img = '/headImg/' + Math.floor(6 * Math.random()) + '.png'
+    //     })
+    //     _self.isLoading = false
+    //   })
+    // })
 
-    service.getMessageList({
-      'recipientName': '系统消息-uxd'
-    }).then(function (res) {
-      if (res.data.status !== 200) {
-        alert('error:' + res.data.message + '-' + res.data.data.msg)
-      }
-      res.data.data.forEach(function (item, index) {
-        _self.messageListSystem.push({
-          'name': '系统消息',
-          'content': item.content,
-          'time': item.time,
-          'timeStr': item.timeStr
-        })
-      })
-      _self.messageListSystem.reverse()
-    })
+    // service.getMessageList({
+    //   'recipientName': '系统消息-uxd'
+    // }).then(function (res) {
+    //   if (res.data.status !== 200) {
+    //     alert('error:' + res.data.message + '-' + res.data.data.msg)
+    //   }
+    //   res.data.data.forEach(function (item, index) {
+    //     _self.messageListSystem.push({
+    //       'name': '系统消息',
+    //       'content': item.content,
+    //       'time': item.time,
+    //       'timeStr': item.timeStr
+    //     })
+    //   })
+    //   _self.messageListSystem.reverse()
+    // })
   }
 }
 </script>

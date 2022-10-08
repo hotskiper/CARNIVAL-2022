@@ -1,7 +1,9 @@
 import Axios from 'axios'
+import qs from 'qs'
 
 Axios.interceptors.request.use(
   config => {
+    // config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
     if (localStorage.token) {
       config.headers.Authorization = `bearer ${localStorage.token}`
     }
@@ -18,7 +20,7 @@ export function reqJsonData (url, params = {}, method = 'post') {
       params
     })
   } else if (method === 'post') {
-    return Axios.post('/' + url, params)
+    return Axios.post('/' + url, qs.stringify(params))
   }
 }
 export default {
@@ -66,9 +68,6 @@ export default {
   },
   mergedExchange (data) {
     return reqJsonData('api/carnival/v1/spree', data, 'post')
-  },
-  getGameList (data) {
-    return reqJsonData('api/getGameList', data, 'get')
   },
   getWxUserInfo (data) {
     return reqJsonData('api/getWxUserInfo', data, 'get')

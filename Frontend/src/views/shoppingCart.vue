@@ -493,42 +493,42 @@ export default {
       _self.$router.push({ name: 'home' })
     }
 
-    service.getUserInfo({
-      id: _self.$store.getters.getId
-    }).then(function (res) {
-      _self.$store.commit(
-        'changeName',
-        res.data.data.name
-      )
-      _self.$store.commit(
-        'changeCardNumber',
-        res.data.data.cardNumber
-      )
-      _self.$store.commit(
-        'changeOnlineScore',
-        res.data.data.onlineScore
-      )
-      _self.$store.commit(
-        'changeUnderTheLineScore',
-        res.data.data.underTheLineScore
-      )
-      _self.$store.commit(
-        'changeConsumption',
-        res.data.data.consumption
-      )
-      _self.$store.commit(
-        'changeId',
-        res.data.data._id
-      )
-      _self.$store.commit(
-        'changeShoppingCartNumber',
-        res.data.data.shoppingCart.length
-      )
-      _self.$store.commit(
-        'changeUserType',
-        res.data.data.type
-      )
-    })
+    // service.getUserInfo({
+    //   id: _self.$store.getters.getId
+    // }).then(function (res) {
+    //   _self.$store.commit(
+    //     'changeName',
+    //     res.data.data.name
+    //   )
+    //   _self.$store.commit(
+    //     'changeCardNumber',
+    //     res.data.data.cardNumber
+    //   )
+    //   _self.$store.commit(
+    //     'changeOnlineScore',
+    //     res.data.data.onlineScore
+    //   )
+    //   _self.$store.commit(
+    //     'changeUnderTheLineScore',
+    //     res.data.data.underTheLineScore
+    //   )
+    //   _self.$store.commit(
+    //     'changeConsumption',
+    //     res.data.data.consumption
+    //   )
+    //   _self.$store.commit(
+    //     'changeId',
+    //     res.data.data._id
+    //   )
+    //   _self.$store.commit(
+    //     'changeShoppingCartNumber',
+    //     res.data.data.shoppingCart.length
+    //   )
+    //   _self.$store.commit(
+    //     'changeUserType',
+    //     res.data.data.type
+    //   )
+    // })
 
     // let itemList = []
     // let itemInfoList = []
