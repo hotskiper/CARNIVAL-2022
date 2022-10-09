@@ -44,7 +44,7 @@
     </div>
 
     <BottomTabBar/>
-    <ConfirmItem ref="ConfirmItem" :select-item-data="selectItemData"/>
+    <ConfirmItem ref="ConfirmItem" :select-item-data="selectItemData" :select-prize-name="selectPrizeName"/>
     <div class="loading-dialog" v-if="isLoading">
       <cube-loading></cube-loading>
     </div>

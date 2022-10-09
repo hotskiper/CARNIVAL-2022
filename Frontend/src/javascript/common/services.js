@@ -53,7 +53,7 @@ export default {
     return reqJsonData('api/carnival/v1/prize_info', data, 'get')
   },
   getPrizeDetail (data) {
-    return reqJsonData('api/carnival/v1/prize_detail', data, 'get')
+    return reqJsonData('api/carnival/v1/prize_detail', data, 'post')
   },
   addCart (data) {
     return reqJsonData('api/carnival/v1/add_cart', data, 'post')
