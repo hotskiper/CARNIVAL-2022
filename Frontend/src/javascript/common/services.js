@@ -3,7 +3,7 @@ import qs from 'qs'
 
 Axios.interceptors.request.use(
   config => {
-    // config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+    config.headers['Content-Type'] = 'application/json'
     if (localStorage.token) {
       config.headers.Authorization = `bearer ${localStorage.token}`
     }
@@ -20,12 +20,16 @@ export function reqJsonData (url, params = {}, method = 'post') {
       params
     })
   } else if (method === 'post') {
-    return Axios.post('/' + url, qs.stringify(params))
+    return Axios.post('/' + url, params)
   }
 }
 export default {
   login (data) {
-    return reqJsonData('api/carnival/v1/login', data, 'post')
+    // return reqJsonData('api/carnival/v1/login', data, 'post')
+    const ins = Axios.create({
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    })
+    return ins.post('/api/carnival/v1/login', qs.stringify(data))
   },
   throwBottle (data) {
     return reqJsonData('api/carnival/v1/throw_bottle', data, 'post')

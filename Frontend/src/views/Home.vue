@@ -552,30 +552,6 @@ export default {
           number: 0
         },
         {
-          name: '印染体验',
-          number: 0
-        },
-        {
-          name: '套圈',
-          number: 0
-        },
-        {
-          name: '投壶',
-          number: 0
-        },
-        {
-          name: '跳百索',
-          number: 0
-        },
-        {
-          name: '极客坊',
-          number: 0
-        },
-        {
-          name: '抛绣球',
-          number: 0
-        },
-        {
           name: '漂流小球',
           number: 0
         }

@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 const params = document.location.search
 const urlParams = qs.parse(params, { ignoreQueryPrefix: true })
-const userId = urlParams.userId
+const userId = urlParams.userId || 'X4653' // 调试用
 
 export default new Vuex.Store({
   state: {

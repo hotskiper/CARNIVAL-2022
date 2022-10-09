@@ -39,11 +39,6 @@ export default {
           'url': '/games/game1/index.html'
         },
         {
-          'name': '漂流瓶',
-          'id': '5d7ee24d12b3397db86e98ae',
-          'url': '/games/game2/index.html'
-        },
-        {
           'name': '拼图',
           'id': '5d7ee25c12b3397db86e98bb',
           'url': '/games/game3/index.html'
@@ -57,6 +52,11 @@ export default {
           'name': '一个都不能死',
           'id': '5d7ee23112b3397db86e989f',
           'url': '/games/game5/index.html'
+        },
+        {
+          'name': '漂流瓶',
+          'id': '5d7ee24d12b3397db86e98ae',
+          'url': '/games/game2/index.html'
         }
       ],
       selectGame: {
