@@ -130,8 +130,8 @@ export default {
 
       service.addCart({
         prize_name: _self.selectPrizeName,
-        prize_attr: _self.selectItemData.name, //  传根的id
-        quantity: _self.selectTypeData.detail.detail
+        prize_attr: _self.selectTypeData.name,
+        quantity: _self.number
       }).then(function (res) {
         if (res.data.status_code !== 200) {
           alert('error:' + res.data.message + '-' + res.data.data.msg)
