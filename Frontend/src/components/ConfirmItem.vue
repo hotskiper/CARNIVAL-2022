@@ -8,7 +8,7 @@
       <div class="main-info">
         <div class="close" @click="close()"></div>
         <div class="main-info-pic">
-          <img alt="烽火嘉年华" @click="showImage()" :src="selectTypeData.picBase64" />
+          <img alt="烽火嘉年华" @click="showImage()" :src="'https://47.94.39.209:53376/img/'+ selectPrizeName + '.jpg'" />
         </div>
         <div class="main-info-in">
           <p>
@@ -50,7 +50,7 @@
     </div>
     <div class="add-icon" :class="{'play-add': isPlayAdd}" @animationend="isPlayAdd = false">+{{this.number}}</div>
     <div class="image-dialog" @click="hideImage()" v-if="showImg">
-       <img alt="烽火嘉年华" :src="selectTypeData.picBase64" />
+       <img alt="烽火嘉年华" :src="'https://47.94.39.209:53376/img/'+ selectPrizeName + '.jpg'" />
     </div>
     <div class="image-dialog-ex" @click="hideImageEx()" v-if="showImgEx">
       <img alt="烽火嘉年华" src="../assets/image/size.png" />

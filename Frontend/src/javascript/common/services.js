@@ -25,11 +25,11 @@ export function reqJsonData (url, params = {}, method = 'post') {
 }
 export default {
   login (data) {
-    // return reqJsonData('api/carnival/v1/login', data, 'post')
-    const ins = Axios.create({
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-    })
-    return ins.post('/api/carnival/v1/login', qs.stringify(data))
+    return reqJsonData('api/carnival/v1/login', data, 'post')
+    // const ins = Axios.create({
+    //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    // })
+    // return ins.post('/api/carnival/v1/login', qs.stringify(data))
   },
   throwBottle (data) {
     return reqJsonData('api/carnival/v1/throw_bottle', data, 'post')

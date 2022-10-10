@@ -16,11 +16,11 @@
         <span class="title">我的订单</span>
         <i class="cubeic-arrow"></i>
       </div>
-      <div class="more-info-in" @click="goPage('myMessage')"  :class="{'notRead':hasNotRead}">
+      <!-- <div class="more-info-in" @click="goPage('myMessage')"  :class="{'notRead':hasNotRead}">
         <img src="../assets/image/message.png" alt />
         <span class="title">我的消息</span>
         <i class="cubeic-arrow"></i>
-      </div>
+      </div> -->
       <div class="more-info-in" @click="goPage('scoreDetail')">
         <img src="../assets/image/score.png" alt />
         <span class="title">积分详情</span>

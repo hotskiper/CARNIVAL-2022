@@ -7,7 +7,7 @@
         <div class="item-list-in">
           <div class="check-bar">
             <cube-checkbox v-model="item.checked">
-              <img alt="Vue logo" src="" />
+              <img alt="Vue logo" :src="'https://47.94.39.209:53376/img/'+ item.item.name + '.jpg'" />
             </cube-checkbox>
           </div>
           <div class="item-info">

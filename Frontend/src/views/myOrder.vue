@@ -13,7 +13,7 @@
         <div class="item-block"  v-for="(item,index) in itemOut.itemList" v-bind:key="index">
           <div class="item-list-in">
                     <div class="check-bar">
-                      <img alt="Vue logo" :src="item.picBase64" />
+                      <img alt="Vue logo" :src="'https://47.94.39.209:53376/img/'+ item.name + '.jpg'" />
                     </div>
                     <div class="item-info">
                       <div class="title">{{item.name}}</div>
@@ -332,20 +332,20 @@ export default {
       //   let itemInfoList = res.data.data
 
       service.getOrderInfo({}).then(function (resIn) {
-        if (resIn.data.status_code !== 200) {
-          alert('error:' + resIn.data.message + '-' + resIn.data.data.msg)
+        let orderList = []
+        if (resIn.data.status_code === 200) {
+          let param = {}
+          param.orderInfoInIsClose = false // 接口无此属性，是否要加
+          param.cardNumber = _self.$store.getters.getCardNumber
+          param.name = resIn.data.data.user_name
+          param.priceAll = resIn.data.data.total_amount
+          param.position = resIn.data.data.address
+          param.itemList = resIn.data.data.detail_info
+          param.allCount = resIn.data.data.all_count
+          orderList.push(param)
         }
         // let orderList = resIn.data.data
-        let orderList = []
-        let param = {}
-        param.orderInfoInIsClose = false // 接口无此属性，是否要加
-        param.cardNumber = _self.$store.getters.getCardNumber
-        param.name = resIn.data.data.user_name
-        param.priceAll = resIn.data.data.total_amount
-        param.position = resIn.data.data.address
-        param.itemList = resIn.data.data.detail_info
-        param.allCount = resIn.data.data.all_count
-        orderList.push(param)
+
         // orderList.forEach(function (item) {
         // item.orderInfoInIsClose = false
         // item.cardNumber = _self.$store.getters.getCardNumber
@@ -369,6 +369,9 @@ export default {
         // })
         // })
         _self.orderList = orderList
+        _self.isLoading = false
+      }).catch(() => {
+        _self.orderList = []
         _self.isLoading = false
       })
       // })

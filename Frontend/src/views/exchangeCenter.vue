@@ -6,7 +6,7 @@
       <div class="item-list-block" v-for="(item,key,index) in itemList" v-bind:key="key">
         <div class="item-list-in">
           <div class="check-bar">
-            <!-- <img alt="Vue logo" :src="item.typeList[0].picBase64" /> -->
+            <img alt="Vue logo" :src="'https://47.94.39.209:53376/img/'+ key + '.jpg'" />
           </div>
           <div class="item-info">
             <div class="title">{{key}}</div>
@@ -295,7 +295,7 @@ export default {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
     },
     openSelect (key) {
-      debugger
+      // debugger
       let _self = this
       _self.selectPrizeName = key
 
