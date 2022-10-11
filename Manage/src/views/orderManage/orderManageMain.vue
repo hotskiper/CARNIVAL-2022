@@ -31,20 +31,17 @@
                     <el-table-column
                             prop="userName"
                             label="姓名"
-                            sortable
                            >
                     </el-table-column>
                     <el-table-column
                             prop="userCardNumber"
                             label="工号"
-                            sortable
                            >
                     </el-table-column>
                    
                     <el-table-column
                             prop="exchangeNumber"
                             label="兑换礼品数量"
-                            sortable
                            >
                            <template slot-scope="scope" >
                                 {{scope.row.exchangeNumber}}
@@ -54,21 +51,18 @@
                      <el-table-column
                             prop="costInt"
                             label="消耗积分"
-                            sortable
                            >
                     </el-table-column>
 
                       <el-table-column
                             prop="position"
                             label="收货地"
-                            sortable
                            >
                     </el-table-column>
 
                     <el-table-column
                             prop="timeStr"
-                            label="兑换时间"
-                            sortable
+                            label="创建时间"
                            >
                     </el-table-column>
             </el-table>
@@ -151,13 +145,10 @@ export default {
     watch: {
         orderSearchKey: function(val, oldVal){
             if(val === "") {
-               this.count = this.originTableData.length
-               this.tableData = this.originTableData
-               return 
+               this.getOrderList();
+            }else{
+                this.getOrderList(val);
             }
-            let oldTableData = JSON.parse(JSON.stringify(this.originTableData));
-            this.tableData = oldTableData.filter( item => (~item.userName.indexOf(val) || ~item.userCardNumber.indexOf(val) || ~item.timeStr.indexOf(val) ||  ~item.position.indexOf(val)));
-            this.count = this.tableData.length
         }
     },
     methods: {
@@ -174,12 +165,13 @@ export default {
         handleSelectionChange() {
             
         },
-        getOrderList() {
+        getOrderList(userId) {
             // let _this = this;
             const param = {
                 page_size: this.pagesize,
                 page_number: this.pagenum
             }
+            if(userId){param.user_id = userId}
             getOrderData(param).then(res => {
                 if (Number(res.data.status_code) === 200) {
                     if (res.data.data.length === 0) {

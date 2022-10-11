@@ -18,7 +18,7 @@
       <div class="item-list-block" v-for="(item,index) in checkedItemList" v-bind:key="index">
         <div class="item-list-in">
           <div class="check-bar">
-            <img alt="Vue logo" src="" />
+            <img alt="Vue logo" :src="'https://47.94.39.209:53376/img/'+ item.item.name + '.jpg'" />
           </div>
           <div class="item-info">
             <div class="title">{{item.item.name}}</div>
@@ -301,7 +301,7 @@ export default {
       checkList: [1, 4],
       checkedItemList: this.$route.params.checkedItemList,
       positionList: [
-        { text: '本部(南京)', value: '南京市云龙山路88号' },
+        { text: '本部(南京)', value: '南京总部' },
         { text: '南宁研发中心', value: '佛子岭路荣和e中心A座722' },
         { text: '深圳研发中心', value: '农轩路农轩100大院' },
         { text: '广州研发中心', value: '高迅大厦1703室' },
@@ -386,7 +386,7 @@ export default {
         // })
 
         service.buyCart({
-          user_name: this.$store.getters.getName,
+          user_name: this.$store.getters.getCardNumber,
           address: _self.positionValue,
           phone: 12342342341
         }).then(function (res) {

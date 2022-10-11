@@ -22,7 +22,6 @@
 import { mapGetters } from 'vuex'
 import variables from '@/styles/variables.scss'
 import SidebarItem from './SidebarItem'
-import { getMenuList } from '@/apis/data'
 
 export default {
   components: { SidebarItem },
@@ -53,17 +52,6 @@ export default {
   },
   mounted() {
     const self = this
-    // getMenuList().then(function(res) {
-    //   res.data.data.forEach(element => {
-    //     const item = {
-    //       path: 'facepredator',
-    //       name: 'Facepredator',
-    //       component: () => import('@/views/gallery/facepredator'),
-    //       meta: { title: '重点人布控', icon: 'facepredator' }
-    //     }
-    //     self.menus.push(item)
-    //   });
-    // })
   }
 }
 </script>

@@ -581,16 +581,16 @@ export default {
     }
   },
   mounted() {
-    let self = this;
-    this.loadAccountInfo();
-    document.addEventListener("keydown", function(e) {
-      if (e.keyCode === 13) {
-      }
-    });
-    this.dealIntData();
-    this.initGiftChart();
-    this.initExchangeChart1();
-    this.initExchangeChart2();
+    // let self = this;
+    // this.loadAccountInfo();
+    // document.addEventListener("keydown", function(e) {
+    //   if (e.keyCode === 13) {
+    //   }
+    // });
+    // this.dealIntData();
+    // this.initGiftChart();
+    // this.initExchangeChart1();
+    // this.initExchangeChart2();
   }
 };
 </script>
