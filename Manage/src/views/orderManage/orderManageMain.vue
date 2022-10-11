@@ -2,7 +2,7 @@
     <div class="one-screen-module">
          <div class="mess-operate">
             <el-row>
-                <el-button type="primary" @click="showAllData()">{{isShowAllData?'分页展示':'展示全部'}}</el-button>
+                <!-- <el-button type="primary" @click="showAllData()">{{isShowAllData?'分页展示':'展示全部'}}</el-button> -->
                 <div class="search-container">
                     <el-input
                         placeholder="请输入关键词"
@@ -180,7 +180,7 @@ export default {
                 page_size: this.pagesize,
                 page_number: this.pagenum
             }
-            getOrderData({param}).then(res => {
+            getOrderData(param).then(res => {
                 if (Number(res.data.status_code) === 200) {
                     if (res.data.data.length === 0) {
                         this.isShowEmpty = true;

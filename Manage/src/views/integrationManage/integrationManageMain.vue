@@ -3,7 +3,7 @@
         <div class="main-page" v-if="showMainPage">
                <div class="mess-operate">
                     <el-row>
-                        <el-button type="primary" @click="showAllData()">{{isShowAllData?'分页展示':'展示全部'}}</el-button>
+                        <!-- <el-button type="primary" @click="showAllData()">{{isShowAllData?'分页展示':'展示全部'}}</el-button> -->
                         <div class="search-container">
                             <el-input
                                 placeholder="请输入关键词"
@@ -23,39 +23,54 @@
                                 :max-height="tableheight"
                                 @selection-change="handleSelectionChange"
                         >
-                            <el-table-column
+                            <!-- <el-table-column
                                     prop="name"
                                     label="姓名"
                                     sortable
                                 >
-                            </el-table-column>
+                            </el-table-column> -->
                             <el-table-column
                                     prop="cardNumber"
                                     label="工号"
-                                    sortable
                                 >
                             </el-table-column>
                             <el-table-column
                                     prop="allScore"
-                                    label="合计总积分"
-                                    sortable
+                                    label="碎片总量"
                                 >
                             </el-table-column>
                             <el-table-column
-                                    prop="onlineScore"
-                                    label="线上总积分"
-                                    sortable
+                                    prop="fragment1_quantity"
+                                    label="伏羲碎片"
+                                >
+                            </el-table-column>
+                            <el-table-column
+                                    prop="fragment2_quantity"
+                                    label="盘古碎片"
+                                >
+                            </el-table-column>
+                            <el-table-column
+                                    prop="fragment3_quantity"
+                                    label="淘沙碎片"
+                                >
+                            </el-table-column>
+                            <el-table-column
+                                    prop="fragment4_quantity"
+                                    label="BOSS碎片"
+                                >
+                            </el-table-column>
+                            <el-table-column
+                                    prop="fragment5_quantity"
+                                    label="ACE碎片"
+                                >
+                            </el-table-column>
+                            <el-table-column
+                                    prop="fragment6_quantity"
+                                    label="星空人碎片"
                                 >
                             </el-table-column>
 
-                            <el-table-column
-                                    prop="underTheLineScore"
-                                    label="线下总积分"
-                                    sortable
-                                >
-                            </el-table-column>
-
-                            <el-table-column
+                            <!-- <el-table-column
                                     prop="exchange"
                                     label="是否兑换"
                                     sortable
@@ -70,9 +85,9 @@
                                     label="消耗积分"
                                     sortable
                                 >
-                            </el-table-column>
+                            </el-table-column> -->
 
-                            <el-table-column
+                            <!-- <el-table-column
                                     prop="left"
                                     label="剩余积分"
                                     sortable
@@ -85,7 +100,7 @@
                                     label="兑换时间"
                                     sortable
                                 >
-                            </el-table-column>
+                            </el-table-column> -->
 
                             <!-- <el-table-column
                                     label="操作"
@@ -236,12 +251,12 @@ export default {
                     page_number: this.pagenum
                 }
                 _this.userOrderData = arrItem
-                 getIntData({param}).then(res => {
+                 getIntData(param).then(res => {
                     if (Number(res.data.status_code) === 200) {
                         if (res.data.data.length === 0) {
                             this.isShowEmpty = true;
                         }
-                        debugger
+                        // debugger
                         this.count = res.data.data.length;
                         let dataObj = [];
                         res.data.data.forEach((item)=> {
@@ -304,7 +319,7 @@ export default {
                     page_size: _this.pagesize,
                     page_number: _this.pagenum
                 }
-                getOrderData({param}).then(res => {
+                getOrderData(param).then(res => {
                     if (Number(res.data.status_code) === 200) {
                         let dataObj = []
                         res.data.data.forEach((item)=> {

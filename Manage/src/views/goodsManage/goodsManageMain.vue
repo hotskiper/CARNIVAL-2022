@@ -2,7 +2,7 @@
     <div class="one-screen-module">
          <div class="mess-operate">
             <el-row>
-                <el-button type="primary" @click="addRowInTbl()">增加行</el-button>
+                <!-- <el-button type="primary" @click="addRowInTbl()">增加行</el-button> -->
             </el-row>
          </div>
          <div class="table-container">
@@ -37,36 +37,25 @@
                             >
                                 <template slot-scope="scope">
                                      <el-form-item class="item-form" :prop="'tableData.' + scope.$index + '.name'" :rules="formModel.rules.name" v-if="scope.row.isEdit">
-                                          <el-input  v-if="scope.row.isEdit" v-model="scope.row.price" placeholder="请输入价格"></el-input>
+                                          <el-input  v-if="scope.row.isEdit" v-model="scope.row.prize_price" placeholder="请输入价格"></el-input>
                                     </el-form-item>
-                                    <span v-else>{{scope.row.price}}积分</span>
+                                    <span v-else>{{scope.row.prize_price}}</span>
                                 </template>
                         </el-table-column>
 
                         <el-table-column
                                 prop="totalNumber"
-                                label="商品总量"
+                                label="商品库存"
                             >
                                 <template slot-scope="scope">
                                      <el-form-item class="item-form" :prop="'tableData.' + scope.$index + '.name'" :rules="formModel.rules.name" v-if="scope.row.isEdit">
-                                          <el-input   v-if="scope.row.isEdit" v-model="scope.row.totalNumber" placeholder="请输入商品总量"></el-input>
+                                          <el-input   v-if="scope.row.isEdit" v-model="scope.row.prize_quantity" placeholder="请输入商品总量"></el-input>
                                     </el-form-item>
-                                    <span v-else>{{scope.row.totalNumber}}</span>
+                                    <span v-else>{{scope.row.prize_quantity}}</span>
                                 </template>
                         </el-table-column>
 
-                        <el-table-column
-                                prop="reserveNumber"
-                                label="备品量"
-                            >
-                                <template slot-scope="scope" >
-                                     <el-form-item class="item-form" :prop="'tableData.' + scope.$index + '.name'" :rules="formModel.rules.name" v-if="scope.row.isEdit">
-                                         <el-input v-if="scope.row.isEdit" v-model="scope.row.reserveNumber" placeholder="请输入备品量"></el-input>
-                                    </el-form-item>
-                                    <span v-else>{{scope.row.reserveNumber}}</span>
-                                </template>
-                        </el-table-column>
-
+<!-- 
                         <el-table-column
                                 prop="sellCount"
                                 label="销量"
@@ -77,7 +66,7 @@
                                 prop="currentNumber"
                                 label="库存量"
                             >
-                        </el-table-column>
+                        </el-table-column> -->
 
                         <el-table-column
                                 label="操作"
@@ -190,7 +179,7 @@ export default {
                 page_size: this.pagesize,
                 page_number: this.pagenum
             }
-            getGoodsData({param}).then(res => {
+            getGoodsData(param).then(res => {
                 if (Number(res.data.status_code) === 200) {
                     if (res.data.data.length === 0) {
                         this.isShowEmpty = true;
@@ -201,7 +190,7 @@ export default {
                                 let rowData = item;
                                 rowData.name = `${item.prize_name}`
                                 // rowData.pId  = goodItem._id
-                                rowData.sellCount = item.prize_quantity
+                                // rowData.sellCount = item.prize_quantity
                                 rowData.isEdit = false
                                 dataObj.push(rowData)
                                 filterObj.push({

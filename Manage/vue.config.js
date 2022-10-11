@@ -16,22 +16,15 @@ module.exports = {
     proxy: {
       '/api': {
         // target: 'http://localhost:3000',
-        target: 'http://yapi.njsecnet.com/mock/1175/',
-        // target: 'http://10.1.200.93:2020/',
+        // target: 'http://yapi.njsecnet.com/mock/1175/',
+        target: 'https://47.94.39.209:53375/',
+        secure: false,
         ws: true,
         changeOrigin: true,
         // pathRewrite: {
         //   '^/api': ''
         // }
-      },
-      '/ailab': {
-        target: 'http://10.0.203.155:8888',
-        changeOrigin: true
-      },
-      // '/api': {
-      //   target: 'https://fh.happyzzy.com',
-      //   changeOrigin: true,
-      // },
+      }
     }
   },
   chainWebpack: config => {

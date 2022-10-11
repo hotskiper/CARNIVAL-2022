@@ -96,21 +96,17 @@ export default {
                     
                     //执行请求，后台验证数据，写入cookie
                     let params = {
-                        loginid: username,
-                        loginpwd: password
+                        username: username,
+                        password: password
                     }
-                    checkLogin().then(function(res){
-                        if(Number(res.data.status) === 200){
-                            if(isCheck){
-                                cookie.setCookie("accountInfo", accountInfo, 1440*3);
-                            }else{
-                                cookie.delCookie("accountInfo")
-                            }
-                            self.$message('登陆成功！')
+                    checkLogin(params).then(function(res){
+                        if(Number(res.status) === 200){
+                            localStorage.mtoken = res.data.access_token
+                            self.$message('登录成功！')
                             self.$router.push('/');
                             self.fullscreenLoading = false;
-                        }else if(Number(res.data.code) === -1){
-                            self.$message.error('用户名或密码不正确！');
+                        }else{
+                            self.$message.error('登录失败！');
                             self.fullscreenLoading = false;
                             return false
                         }
