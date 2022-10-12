@@ -3,41 +3,54 @@
     <div class="order-info">
       <div class="user-info">
         <span class="title">收货人</span>
-        <span class="content">{{this.$store.getters.getCardNumber}}{{this.$store.getters.getName}}</span>
+        <span class="content"
+          >{{ this.$store.getters.getCardNumber
+          }}{{ this.$store.getters.getName }}</span
+        >
       </div>
       <div class="position-info">
         <span class="title">配送地址</span>
         <div class="content" @click="showPicker">
-          <span class="content-1">{{postionName}}</span>
-          <span class="content-2">{{positionValue}}</span>
+          <span class="content-1">{{ postionName }}</span>
+          <span class="content-2">{{ positionValue }}</span>
         </div>
         <i class="cubeic-arrow"></i>
       </div>
     </div>
     <div class="item-list">
-      <div class="item-list-block" v-for="(item,index) in checkedItemList" v-bind:key="index">
+      <div
+        class="item-list-block"
+        v-for="(item, index) in checkedItemList"
+        v-bind:key="index"
+      >
         <div class="item-list-in">
           <div class="check-bar">
-            <img alt="Vue logo" :src="'https://47.94.39.209:53376/img/'+ item.item.name + '.jpg'" />
+            <img
+              alt="Vue logo"
+              :src="'https://47.94.39.209:53376/img/' + item.item.name + '.jpg'"
+            />
           </div>
           <div class="item-info">
-            <div class="title">{{item.item.name}}</div>
+            <div class="title">{{ item.item.name }}</div>
             <div class="more">
-              <span>{{ item.number * item.item.price}}</span>
+              <span>{{ item.number * item.item.price }}</span>
               <span>积分</span>
               <span>
-                 {{item.item.attr}}
+                {{ item.item.attr }}
                 <i class="cubeic-select"></i>
               </span>
             </div>
           </div>
           <div class="action-bar">
             <div class="change-number">
-              <span>x{{item.number}}</span>
+              <span>x{{ item.number }}</span>
             </div>
           </div>
         </div>
-        <div class="item-list-line"  v-if="index != (checkedItemList.length-1)"></div>
+        <div
+          class="item-list-line"
+          v-if="index != checkedItemList.length - 1"
+        ></div>
       </div>
 
       <!-- <div class="item-list-in">
@@ -68,7 +81,7 @@
       <div class="bottom-bar-block">
         <p>
           合计积分：
-          <span>{{allPrice}}</span>
+          <span>{{ allPrice }}</span>
         </p>
       </div>
       <div class="bottom-bar-block">
@@ -301,29 +314,28 @@ export default {
       checkList: [1, 4],
       checkedItemList: this.$route.params.checkedItemList,
       positionList: [
-        { text: '本部(南京)', value: '南京总部' },
-        { text: '南宁研发中心', value: '佛子岭路荣和e中心A座722' },
-        { text: '深圳研发中心', value: '农轩路农轩100大院' },
-        { text: '广州研发中心', value: '高迅大厦1703室' },
-        { text: '重庆研发中心', value: '汉国中心B505-506' },
-        { text: '大连研发中心', value: '现代服务业总部大厦' },
-        { text: '上海研发中心', value: '浦星公路797号5栋B座3楼' },
-        { text: '武汉研发中心', value: '武汉软件新城一期A4栋B座四楼' },
-        { text: '内蒙研发中心', value: '呼和浩特市公安局' },
-        { text: '石家庄研发中心', value: '金立方大厦2407室' },
-        { text: '青岛研发中心', value: '中山路18号' },
-        { text: '北京研发中心', value: '嘉悦广场1号楼1302' },
-        { text: '杭州研发中心', value: '近江时代大厦c902' },
-        { text: '沈阳研发中心', value: '市府恒隆办公楼1号楼1913室' },
-        { text: '太原研发中心', value: '坞城南路56' },
-        { text: '长春研发中心', value: '长春市公安局（人民广场）' },
-        { text: '贵州研发中心', value: '德福中心A7-10-7' },
-        { text: '成都研发中心', value: '航天科技大厦7楼707B' },
-        { text: '新疆研发中心', value: '钱塘江路外滩一号27楼2712室' },
-        { text: '郑州研发中心', value: '世玺中心1212室' },
-        { text: '天津研发中心', value: '天津市公安局东门' },
-        { text: '合肥研发中心', value: '合肥市公安局' },
-        { text: '西安研发中心', value: '立人科技园B座6F' },
+        { text: '南京总部', value: '江苏省南京市建邺区云龙山路88号烽火科技大厦' },
+        { text: '安徽研发创新中心', value: '安徽省合肥市庐阳区三孝口地铁口南300米德必庐州WE503室' },
+        { text: '北京研发创新中心', value: '北京市西城区大成广场A1门14层烽火星空' },
+        { text: '重庆研发基地', value: '重庆市渝北区金渝大道金童路汉国中心B坐505' },
+        { text: '成都研发基地', value: '成都市青羊区金盾路52号国栋中央商务大厦' },
+        { text: '大连研发基地', value: '辽宁省大连市沙河口区黄河路620号现代服务业大厦' },
+        { text: '沈阳研发基地', value: '沈阳市和平区南京北街77号' },
+        { text: '长春研发基地', value: '吉林省长春市北湖新区龙腾路华为云数据中心' },
+        { text: '广东研发创新中心', value: '广州市越秀区环市东路416号高迅大厦17楼' },
+        { text: '广西研发创新中心', value: '广西南宁市青秀区东葛路118号万达银座3321-23室' },
+        { text: '杭州研发创新中心', value: '浙江省杭州市滨江区联慧街88号建达大厦5楼' },
+        { text: '河北研发创新中心', value: '河北省石家庄市桥西区金立方大厦1号楼2407' },
+        { text: '河南研发创新中心', value: '河南省郑州市金水区世玺中心12楼1212室' },
+        { text: '内蒙研发创新中心', value: '内蒙古呼和浩特市赛罕区敕勒川大街呼市公安局' },
+        { text: '山东研发创新中心', value: '山东省青岛市市南区中山路18号网警支队' },
+        { text: '山西研发创新中心', value: '山西省太原市小店区龙城大街山西省公安厅' },
+        { text: '上海研发创新中心', value: '上海市闵行区浦江镇浦星公路797号dp-park园区5号楼B栋三楼' },
+        { text: '天津研发创新中心', value: '天津市西青区新科道2号天津市公安局东南门' },
+        { text: '武汉研发创新中心', value: '湖北省武汉市江夏区高新四路六号烽火科技园' },
+        { text: '新疆研发创新中心', value: '新疆乌鲁木齐市新市区喀什东路221号和兴嘉苑二期高6栋18层2单元1802（跃层）' },
+        { text: '云贵联合研发创新中心', value: '贵州省贵阳市观山湖区黔灵山路306号贵阳市公安局东门' },
+        { text: '西北联合研发中心', value: '陕西省西安市太白南路222号西安市公安局交通警察支队' },
         { text: '无固定地址', value: '请星空下联系“周祺”，安排邮寄' }
       ],
       postionName: '请选择',
@@ -387,7 +399,7 @@ export default {
 
         service.buyCart({
           user_name: this.$store.getters.getCardNumber,
-          address: _self.positionValue,
+          address: `${_self.postionName}(${_self.positionValue})`,
           phone: 12342342341
         }).then(function (res) {
           if (res.data.status_code !== 200) {

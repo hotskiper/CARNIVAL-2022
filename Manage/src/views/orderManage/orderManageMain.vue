@@ -72,7 +72,7 @@
                     @size-change="handleSizeChange"
                     @current-change="handleCurrentChange"
                     :current-page="currentPage"
-                    :page-size="10"
+                    :page-size="pagesize"
                     layout="total,sizes, prev, pager, next"
                     :total="count"
                     background
@@ -144,11 +144,9 @@ export default {
     },
     watch: {
         orderSearchKey: function(val, oldVal){
-            if(val === "") {
+            
                this.getOrderList();
-            }else{
-                this.getOrderList(val);
-            }
+            
         }
     },
     methods: {
@@ -165,23 +163,22 @@ export default {
         handleSelectionChange() {
             
         },
-        getOrderList(userId) {
+        getOrderList() {
             // let _this = this;
             const param = {
                 page_size: this.pagesize,
                 page_number: this.pagenum
             }
-            if(userId){param.user_id = userId}
+            if(this.orderSearchKey){param.user_id = this.orderSearchKey}
             getOrderData(param).then(res => {
                 if (Number(res.data.status_code) === 200) {
                     if (res.data.data.length === 0) {
                         this.isShowEmpty = true;
                     }
-                    console.log('orderData===',res.data.data)
-                    this.count = res.data.data.length;
+                    this.count = res.data.data.total_count;
                     this.isShowLoading = false
                     let dataObj = [];
-                    res.data.data.forEach((item)=> {
+                    res.data.data.data.forEach((item)=> {
                         let rowData = item;
                         rowData.userName = item.user_name
                         rowData.userCardNumber = item.user_id
@@ -267,30 +264,12 @@ export default {
         // },
         handleSizeChange(val) {
             this.pagesize = val
-            let _this = this;
-            this.pagesize = val
-            setTimeout(function() {
-                let maxPageNum = _this.count % _this.pagesize === 0 ? parseInt(_this.count / _this.pagesize) : parseInt(_this.count / _this.pagesize) + 1;
-                let oldTableData = JSON.parse(JSON.stringify(_this.originTableData));
-                if(_this.pagenum < maxPageNum) {
-                    _this.tableData = oldTableData.splice(_this.pagesize * (_this.pagenum - 1), _this.pagesize)
-                }else{
-                    _this.tableData = oldTableData.splice(_this.pagesize * (_this.pagenum - 1), _this.count - _this.pagesize * (_this.pagenum - 1)) 
-                }
-            }, 0)
-           
+            this.getOrderList();
 
         },
         handleCurrentChange(val) {
             this.pagenum = val;
-            this.pagenum = val;
-            let maxPageNum = this.count % this.pagesize === 0 ? parseInt(this.count / this.pagesize) : parseInt(this.count / this.pagesize) + 1;
-            let oldTableData = JSON.parse(JSON.stringify(this.originTableData));
-            if(this.pagenum < maxPageNum) {
-                this.tableData = oldTableData.splice(this.pagesize * (this.pagenum - 1), this.pagesize)
-            }else{
-                this.tableData = oldTableData.splice(this.pagesize * (this.pagenum - 1), this.count - this.pagesize * (this.pagenum - 1)) 
-            }
+            this.getOrderList();
         },
     },
     mounted() {

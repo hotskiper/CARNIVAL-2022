@@ -89,7 +89,7 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="currentPage"
-        :page-size="10"
+        :page-size="pagesize"
         layout="total,sizes, prev, pager, next"
         :total="count"
         background
@@ -115,7 +115,7 @@ export default {
       tableheight: 600,
       currentPage: 1, //当前页
       count: 1000, //总量
-      pagesize: 5, //条数
+      pagesize: 10, //条数
       pagenum: 1, //页数,
       isShowEmpty: false,
       filterNameArr: [],
@@ -150,13 +150,13 @@ export default {
       }
       getGoodsData(param).then((res) => {
         if (Number(res.data.status_code) === 200) {
-          if (res.data.data.length === 0) {
+          if (res.data.data.total_count === 0) {
             this.isShowEmpty = true
           }
           this.isShowLoading = false
           let dataObj = [],
             filterObj = []
-          res.data.data.forEach((item) => {
+          res.data.data.data.forEach((item) => {
             let rowData = item
             rowData.name = `${item.prize_name}`
             rowData.isEdit = false
@@ -167,12 +167,12 @@ export default {
             })
           })
 
-          this.count = dataObj.length
+          this.count = res.data.data.total_count
           this.formModel.tableData = dataObj
 
-          this.originTableData = dataObj
-          let oldTableData = JSON.parse(JSON.stringify(this.originTableData))
-          this.tableData = oldTableData.splice(0, this.pagesize)
+          // this.originTableData = dataObj
+          // let oldTableData = JSON.parse(JSON.stringify(this.originTableData))
+          // this.tableData = oldTableData.splice(0, this.pagesize)
 
           this.filterNameArr = filterObj
         }
@@ -262,46 +262,11 @@ export default {
     },
     handleSizeChange(val) {
       this.pagesize = val
-      let _this = this
-      this.pagesize = val
-      setTimeout(function () {
-        let maxPageNum =
-          _this.count % _this.pagesize === 0
-            ? parseInt(_this.count / _this.pagesize)
-            : parseInt(_this.count / _this.pagesize) + 1
-        let oldTableData = JSON.parse(JSON.stringify(_this.originTableData))
-        if (_this.pagenum < maxPageNum) {
-          _this.tableData = oldTableData.splice(
-            _this.pagesize * (_this.pagenum - 1),
-            _this.pagesize
-          )
-        } else {
-          _this.tableData = oldTableData.splice(
-            _this.pagesize * (_this.pagenum - 1),
-            _this.count - _this.pagesize * (_this.pagenum - 1)
-          )
-        }
-      }, 0)
+      this.getGoodsList()
     },
     handleCurrentChange(val) {
       this.pagenum = val
-      this.pagenum = val
-      let maxPageNum =
-        this.count % this.pagesize === 0
-          ? parseInt(this.count / this.pagesize)
-          : parseInt(this.count / this.pagesize) + 1
-      let oldTableData = JSON.parse(JSON.stringify(this.originTableData))
-      if (this.pagenum < maxPageNum) {
-        this.tableData = oldTableData.splice(
-          this.pagesize * (this.pagenum - 1),
-          this.pagesize
-        )
-      } else {
-        this.tableData = oldTableData.splice(
-          this.pagesize * (this.pagenum - 1),
-          this.count - this.pagesize * (this.pagenum - 1)
-        )
-      }
+      this.getGoodsList()
     },
   },
   mounted() {
