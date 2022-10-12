@@ -43,46 +43,6 @@
           </el-table-column>
           <el-table-column prop="fragment6_quantity" label="星空人碎片">
           </el-table-column>
-
-          <!-- <el-table-column
-                                    prop="exchange"
-                                    label="是否兑换"
-                                    sortable
-                                    :filters="[{text: '是', value: 1}, {text: '否', value: 0}]"
-                                    :filter-method="filterHandler"
-                                >
-                                <template slot-scope="scope">{{ scope.row.exchange === 0 ? '否':'是' }}</template>   
-                            </el-table-column>
-
-                            <el-table-column
-                                    prop="consumption"
-                                    label="消耗积分"
-                                    sortable
-                                >
-                            </el-table-column> -->
-
-          <!-- <el-table-column
-                                    prop="left"
-                                    label="剩余积分"
-                                    sortable
-                                >
-                                <template slot-scope="scope">{{ scope.row.allScore - scope.row.consumption }}</template>   
-                            </el-table-column>
-
-                            <el-table-column
-                                    prop="exchangeTime"
-                                    label="兑换时间"
-                                    sortable
-                                >
-                            </el-table-column> -->
-
-          <!-- <el-table-column
-                                    label="操作"
-                                >
-                                <template slot-scope="scope">
-                                    <el-button type="text" size="small" @click="intDetail(scope.row)">详情</el-button>
-                                </template>
-                            </el-table-column> -->
         </el-table>
       </div>
       <div class="pagination" v-show="!isShowAllData">
@@ -104,10 +64,10 @@
         <span class="child-title">{{ curId }}积分详情</span>
       </div>
       <div class="detail-card">
-        <div class="detail-kind" v-for="(item, index) in detailData">
+        <div class="detail-kind" v-for="(item, index) in detailData" :key="index">
           <div class="detail-title">{{ item.type }}</div>
           <div class="int-layout">
-            <div class="game-int" v-for="(game, gameIndex) in item.data">
+            <div class="game-int" v-for="(game, gameIndex) in item.data" :key="gameIndex">
               <span class="game-name">{{ game.game }}</span>
               <span class="game-score">{{ game.score }}</span>
             </div>
@@ -125,30 +85,12 @@
 </template>
 
 <script>
-import cookie from "../../utils/cookie.js"
 import {
   getIntData,
-  getOrderData,
-  getIntDetail,
-  checkLogin,
+  getIntDetail
 } from "../../apis/data.js"
-import { debug } from "util"
 export default {
   data() {
-    var validateUsername = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error("用户名不能为空"))
-      } else {
-        callback()
-      }
-    }
-    var validatePassword = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error("密码不能为空"))
-      } else {
-        callback()
-      }
-    }
     return {
       showMainPage: true,
       curId: "x5500",
@@ -158,20 +100,6 @@ export default {
         password: "",
       },
       isCheck: false,
-      rules: {
-        username: [
-          {
-            validator: validateUsername,
-            trigger: "blur",
-          },
-        ],
-        password: [
-          {
-            validator: validatePassword,
-            trigger: "blur",
-          },
-        ],
-      },
       intSearchKey: "",
       fullscreenLoading: false,
       tableheight: 700,
@@ -188,35 +116,13 @@ export default {
   },
   watch: {
     intSearchKey: function (val, oldVal) {
-      if (val === "") {
-        //    this.tableData = this.originTableData
-        this.count = this.originTableData.length
-        this.handleCurrentChange(this.pagenum)
-        return
-      }
-      let oldTableData = JSON.parse(JSON.stringify(this.originTableData))
-      this.tableData = oldTableData.filter(
-        (item) =>
-          ~item.cardNumber.indexOf(val) ||
-          ~item.name.indexOf(val) ||
-          ~item.exchangeTime.indexOf(val)
-      )
-      this.count = this.tableData.length
+      
     },
   },
   created() {
     this.getIntList()
   },
   methods: {
-    showAllData() {
-      this.isShowAllData = !this.isShowAllData
-      if (this.isShowAllData) {
-        this.tableData = this.originTableData
-      } else {
-        let oldTableData = JSON.parse(JSON.stringify(this.originTableData))
-        this.tableData = oldTableData.splice(0, this.pagesize)
-      }
-    },
     handleSelectionChange() {},
     filterHandler(value, row, column) {
       return row.exchange === value
@@ -246,14 +152,7 @@ export default {
               item.fragment4_quantity +
               item.fragment5_quantity +
               item.fragment6_quantity
-            // rowData.left
-            _this.userOrderData.forEach((obj) => {
-              if (item.user_id === obj._id) {
-                rowData.name = obj.name
-                rowData.exchangeTime = obj.create_time
-                rowData.consumption = obj.consumption
-              }
-            })
+           
             dataObj.push(rowData)
           })
           this.isShowLoading = false
@@ -264,74 +163,14 @@ export default {
         }
       })
     },
-    getUserOrderData() {
-      let _this = this
-      return new Promise(function (resolve, reject) {
-        const param = {
-          page_size: _this.pagesize,
-          page_number: _this.pagenum,
-        }
-        getOrderData(param).then((res) => {
-          if (Number(res.data.status_code) === 200) {
-            let dataObj = []
-            res.data.data.forEach((item) => {
-              let itemData = {}
-              itemData.name = item.user_name
-              itemData._id = item.user_id
-              itemData.consumption = item.total_amount
-              itemData.create_time = item.create_time
-              dataObj.push(itemData)
-            })
-            resolve(dataObj)
-          } else {
-            reject(res)
-          }
-        })
-      })
-    },
 
     handleSizeChange(val) {
-      let _this = this
       this.pagesize = val
-      // this.getCreateTaskList()
-      setTimeout(function () {
-        let maxPageNum =
-          _this.count % _this.pagesize === 0
-            ? parseInt(_this.count / _this.pagesize)
-            : parseInt(_this.count / _this.pagesize) + 1
-        let oldTableData = JSON.parse(JSON.stringify(_this.originTableData))
-        if (_this.pagenum < maxPageNum) {
-          _this.tableData = oldTableData.splice(
-            _this.pagesize * (_this.pagenum - 1),
-            _this.pagesize
-          )
-        } else {
-          _this.tableData = oldTableData.splice(
-            _this.pagesize * (_this.pagenum - 1),
-            _this.count - _this.pagesize * (_this.pagenum - 1)
-          )
-        }
-      }, 0)
+      this.getIntList();
     },
     handleCurrentChange(val) {
       this.pagenum = val
-      let maxPageNum =
-        this.count % this.pagesize === 0
-          ? parseInt(this.count / this.pagesize)
-          : parseInt(this.count / this.pagesize) + 1
-      let oldTableData = JSON.parse(JSON.stringify(this.originTableData))
-      if (this.pagenum < maxPageNum) {
-        this.tableData = oldTableData.splice(
-          this.pagesize * (this.pagenum - 1),
-          this.pagesize
-        )
-      } else {
-        this.tableData = oldTableData.splice(
-          this.pagesize * (this.pagenum - 1),
-          this.count - this.pagesize * (this.pagenum - 1)
-        )
-      }
-      // this.getCreateTaskList()
+      this.getIntList();
     },
     intDetail(rowData) {
       this.curId = rowData.id
